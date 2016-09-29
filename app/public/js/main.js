@@ -1,9 +1,9 @@
-function Main(view){
+function Main(nw){
 	//Properties.
 	var that = this;
-	var view = view;
+	var wnd = nw.Window.get();
 	//that.wnd= view || window;
-	that.components= {};
+	that.components = {};
 
 	//Public Methods
 	that.init = function(){
@@ -12,30 +12,53 @@ function Main(view){
 		that.components.view.exit = document.getElementsByClassName('buttonClose') || [];
 		that.components.view.minimize = document.getElementsByClassName('buttonMinz') || [];
 		that.components.view.maximize = document.getElementsByClassName('buttonMaxz') || [];
-		console.log(that.wnd);
+
+		//Handlers for control
 		addHandler(that.components.view.exit, 'click', function(){
-			view.close();
+			wnd.close();
 		});
-		//addHandler(that.components.view.minimize, 'click', that.wnd.minimize);
-		//addHandler(that.components.view.maximize, 'click', that.wnd.maximize);
+		addHandler(that.components.view.minimize, 'click', function(){
+			wnd.minimize();
+		});
+		addHandler(that.components.view.maximize, 'click', function(){
+			wnd.maximize();
+		});
 		
 		//Añadir evento a la ventana.
-		//window.on('maximize',function(){
-		//	that.components.view.maximize.removeEventListener('click',that.wnd.maximize);
-		//	that.components.view.maximize.removeEventListener('click',that.wnd.restore); 
-		//});
+		wnd.on('maximize',function(){
+			if(wnd.height !== 1200){
+				removeHandler(that.components.view.maximize,'click',wnd.maximize);
+				addHandler(that.components.view.maximize,'click',function(){
+					wnd.resizeTo(1200, 600);
+					wnd.setPosition("center");wnd.setPosition("center");
+				}); 
+			}else{
+				removeHandler(that.components.view.maximize,'click',function(){
+					wnd.resizeTo(1200, 600);
+					wnd.setPosition("center");wnd.setPosition("center");
+				}); 
+				addHandler(that.components.view.maximize,'click',wnd.maximize);
+			}
+		});
 	};
 
 
 	//Private Methods
 	var addHandler = function(elements,event,funct){
-		console.log(elements);
+		//elements =  Array.isArray(elements)?elements:[];
 		event = typeof(event) === 'string'? event: 'click';
 		funct = typeof(funct) === 'function'? funct: function(){}; 
-		
+
 		for(let element of elements){
-			console.log(element);
 			element.addEventListener(event, funct);
+		}
+	};
+	var removeHandler = function(elements,event,funct){
+		//elements =  Array.isArray(elements)?elements:[];
+		event = typeof(event) === 'string'? event: 'click';
+		funct = typeof(funct) === 'function'? funct: function(){};
+		for( let element of elements){
+			element.removeEventListener(event,funct);
 		}
 	};
 

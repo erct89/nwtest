@@ -242,10 +242,12 @@
 	<script src="./public/js/main.js"></script>
 
 	<script type="text/javascript">
-	console.log(nw);
+		
 		function init(){
-			
-			var main = new Main(window);
+			console.log("NW OBJ");
+			console.log(nw);
+			console.log("---");
+			var main = new Main(nw);
 			var clock = new Reloj();
 			clock.startClock();
 		}
