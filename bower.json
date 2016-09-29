@@ -1,0 +1,15 @@
+{
+  "name": "nwtest",
+  "description": "",
+  "main": "./app/index.html",
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "./app/public/libs/bower_components",
+    "test",
+    "tests"
+  ]
+}

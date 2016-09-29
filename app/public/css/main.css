@@ -1,0 +1,213 @@
+/*
+Sigo un criterio que es escalar según la extructura del documento, y de más general a mas expecifico.
+Por ejemplo: 
+	Primero usamos: *; Que comprende la regla más general, ya que afecta a todos.
+	Segundo usamos: html, body; Que engloba a las reglas comunes para html y body;
+	Tercero usamos: header; 'header' cuelga de 'body', por lo que va debajo 'body';
+	Cuarto usamos: header .myclass; 'header.myclass' al ser mas especifico lo ponemos por debajo de 'header'.
+	... 
+*/
+
+
+/*TAGS*/
+*{
+	
+	padding: 0px;
+	margin: 0px;
+}
+
+html, body{
+	height: 100%;
+	width: 100%;
+}
+
+html{}
+
+/*body*/
+body{}
+
+body #wrapper{
+	height: 100%;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+/*header*/
+header{
+	height: 60px;
+	width: 100%;
+	color: #ffffff;
+	background: #152C70;
+
+	z-index: 3;
+}
+header nav{
+	height: 30px;
+	width: 100%;
+}
+header nav h1{
+	font-size: 1em;
+}
+header nav img{
+	height: 20px;
+	margin: 2.5px auto;
+}
+header nav #closeApp img{
+	margin: 2.5px 0 0 0;	
+}
+header nav #closeApp img:hover{
+	-webkit-animation:spin 4s linear infinite;
+    -moz-animation:spin 4s linear infinite;
+    -o-animation:spin 4s linear infinite;
+    animation:spin 4s linear infinite;
+}
+header nav.nav-control{
+	background: #152C70;
+	z-index: 2; 	
+}
+header nav.nav-menu{
+	background: #000758;
+	border-bottom: 2px solid #C7CCDF;
+	box-shadow:  0px 2px 2px 2px #C7CCDF;	
+	z-index: 1;
+}
+
+header #menu{
+	height: 100%;
+	list-style: none;
+}
+
+header #menu .menu-item:hover{
+	background-color: #C7CCDF; 
+	-webkit-transition: background-color 500ms ease-in;
+	-moz-transition: background-color 500ms ease-in;
+	-o-transition: background-color 500ms ease-in;
+	transition: background-color 500ms ease-in;
+}
+
+header #menu .menu-item a{
+	color: #ffffff;
+	font-weight:bold;
+	font-size: small;
+	text-transform: capitalize;
+}
+header #menu .menu-item a:hover{
+	color: #ffffff;
+	text-transform: uppercase;
+}
+header #menu .menu-item.selected{
+	background-color: #C7CCDF;
+}
+header #menu .menu-item.selected a{
+	color: #152C70; 
+	text-transform: uppercase;
+}
+
+/*main*/
+main{
+	padding: 1em;
+	height: 100%;
+	width: 100%;
+	background: #ffffff;
+
+	z-index: 0;
+}
+
+/*footer*/
+footer{
+	position: fixed;
+	bottom: 0;
+	
+	height: 50px;
+	width: 100%;
+
+	padding: 5px 0 0 0;
+
+	border-top: 2px solid gray;
+	box-shadow: -2px 0px 2px 2px #152C70;
+
+	color: #ffffff;
+	background: #152C70;
+	
+	font-size: x-small;
+	font-family: 'Roboto';
+
+	z-index: 1;
+}
+footer div{
+	height: 100%;
+}
+footer .middle h4{
+	font-weight: lighter;
+	font-style: italic;
+}
+
+/*CLASS */
+.left{
+	width: 15%;
+}
+
+.middle{
+	width: 100%;
+}
+
+.right{
+	width: 15%;
+}
+
+.flexi{
+	display: flex;
+}
+
+.column{
+	flex-direction: column;
+}
+.row{
+	flex-direction: row;
+}
+.row-item{
+	display: inline-block;
+}
+
+.center{
+	margin: 0 auto;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.btn{
+	text-decoration-style: none;
+	margin: auto 5px;
+}
+
+.btn-circle{
+	border-radius: 50%;
+}
+.btn-error{
+	background: none;
+}
+.btn-error:hover{
+	background: #ff0000;
+}
+
+/*ID*/
+#navLogo{
+	fill:white;
+}
+#footerClock{
+	font-family: "courier new";
+}
+#footerClock .date{
+	margin: 0 5px 0 0;
+}
+#footerClock .time{
+	margin: 0 0 0 5px;
+}
+
+/*Animaciones*/
+@-o-keyframes giroImg {100% { -o-transform: rotate(360degs); } }
+@-moz-keyframes giroImg { 100% { -moz-transform: rotate(360deg); } }
+@-webkit-keyframes giroImg { 100% { -webkit-transform: rotate(360deg); } }
+@keyframes giroImg { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); } }
+
