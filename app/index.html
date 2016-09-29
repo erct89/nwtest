@@ -239,11 +239,15 @@
 	<script src="./public/libs/bower_components/angular/angular.js"></script>
 	<script src="./public/libs/bower_components/lumx/dist/lumx.js"></script>
 	<script src="./public/js/libs/reloj.js"></script>
+	<script src="./public/js/main.js"></script>
 
 	<script type="text/javascript">
+	console.log(nw);
 		function init(){
+			
+			var main = new Main(window);
 			var clock = new Reloj();
-			clock.startClock(); 
+			clock.startClock();
 		}
 	</script>
 </head>
@@ -258,7 +262,23 @@
 					<h1>WebCam</h1>
 				</div>
 				<div class="right row-item">
-					<a id="closeApp"><img class="btn btn-error btn-circle" src="./public/images/close.svg"></a>
+					<ul class="flexi row">
+						<li class="menu-item row-item">
+							<a id="minzApp" class="flexi buttonMinz">
+								<img class="btn btn-success btn-circle" src="./public/images/window-minimize.svg">
+							</a>
+						</li>
+						<li class="menu-item row-item">
+							<a id="maxzApp" class="flexi buttonMaxz">
+								<img class="btn btn-success btn-circle" src="./public/images/window-maximize.svg">
+							</a>
+						</li>
+						<li class="menu-item row-item">
+							<a id="closeApp" class="flexi buttonClose">
+								<img class="btn btn-error btn-circle" src="./public/images/window-close.svg">
+							</a>
+						</li>	
+					</ul>
 				</div>
 			</nav>
 			<nav class="flexi row nav-menu">

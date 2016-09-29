@@ -25,7 +25,7 @@ function Reloj(){
 		dateTime.date.day = doubleDig(d.getDate()); //(d.getDate() < 10)? "0" + d.getDate(): d.getDate();
 		dateTime.date.month = doubleDig(d.getMonth()); //(d.getMonth() < 10)? "0" + d.getMonth(): d.getMonth();
 		dateTime.date.year = doubleDig(d.getFullYear()); //(d.getFullYear() < 10)? "0" + d.getFullYear(): d.getFullYear();
-		console.log(dateTime.date);
+		//console.log(dateTime.date);
 	}
 	var printDate = function(){
 		for(let index in eDate){
