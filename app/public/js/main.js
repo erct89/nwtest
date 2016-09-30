@@ -1,3 +1,34 @@
+var app = angular.module('main',["lumx","ds.clock"]);
+
+app.constant('DATE_TIME',{
+	time:{twelve: 'hh:mm:ss a',twentyFour: 'HH:mm:ss'},
+	date:{small: 'dd/MM/yy',normal: 'dd/MM/yyyy',big: 'dd MMM yyyy'},
+});
+
+app.controller('mainController', ['DATE_TIME','$scope', function(DATE_TIME,$scope){
+	$scope.dtf = DATE_TIME;
+	$scope.menuIndex = 1;
+
+	$scope.$on('menuChangeSelected',function(evt, args){
+		$scope.menuIndex = args.indexItem;
+	});
+}]);
+app.controller('headerController', ['$scope', function($scope){
+	$scope.menuItem = 1;
+	$scope.navClick = function(indexItem){
+		if(indexItem > 0 || indexItem < 5){
+			$scope.menuItem = indexItem;
+			$scope.$emit('menuChangeSelected',{indexItem:indexItem});	
+		}
+	};
+}]);
+app.controller('contentController', ['$scope', function($scope){
+}]);
+app.controller('footerController', ['$scope','$rootScope', function($scope,$rootScope){
+	
+}]);
+
+
 function Main(nw){
 	//Properties.
 	var that = this;

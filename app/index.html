@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="main">
 <head>
 	<meta charset="utf-8"/>
 	<title>My Os Plataform</title>
 
+	<link href='//fonts.googleapis.com/css?family=Syncopate:400,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="./public/libs/bower_components/lumx/dist/lumx.css">
+	<link rel="stylesheet" href="./public/libs/bower_components/angular-clock/dist/angular-clock.css">
 	<link rel="stylesheet" href="./public/css/main.css">
 	<style style="display:none">/* cyrillic-ext */
 		@font-face {
@@ -238,21 +240,22 @@
 	<script src="./public/libs/bower_components/moment/min/moment-with-locales.js"></script>
 	<script src="./public/libs/bower_components/angular/angular.js"></script>
 	<script src="./public/libs/bower_components/lumx/dist/lumx.js"></script>
+	<script src="./public/libs/bower_components/angular-ui-clock/dist/angular-clock.js"></script>
+
 	<script src="./public/js/libs/reloj.js"></script>
 	<script src="./public/js/main.js"></script>
 
 	<script type="text/javascript">
-		
 		function init(){
 			var main = new Main(nw);
-			var clock = new Reloj();
-			clock.startClock();
+			//var clock = new Reloj();
+			//clock.startClock();
 		}
 	</script>
 </head>
-<body onload="init()">
+<body ng-controller="mainController">
 	<div id="wrapper">
-		<header class="flexi column center">
+		<header class="flexi column center" ng-controller="headerController">
 			<nav class="flexi row nav-control">
 				<div class="left row-item">
 					<img id="navLogo" alt="icon-bar" src="./public/images/otislogo.svg" />
@@ -284,29 +287,104 @@
 				<div class="row-item left"></div>
 				<div class="row-item middle">					
 					<ul id="menu" class="main-menu flexi row">
-						<li class="menu-item row-item selected"><a class="btn" href="#"><span>Menu<span></a></li>
-						<li class="menu-item row-item"><a class ="btn" href="#"><span>Dispositivos</span></a></li>
-						<li class="menu-item row-item"><a class="btn" href="#"><span>Mirroring</span></a></li>
-						<li class="menu-item row-item"><a class="btn" href="#"><span>Recording</span></a></li>
+						<li class="menu-item row-item selected">
+							<a class="btn" ng-click="navClick(1)" href="#">
+								<span>Menu<span>
+							</a>
+						</li>
+						<li class="menu-item row-item" ng-class="{selected:(menuItem===2)}">
+							<a class ="btn" ng-click="navClick(2)" href="#">
+								<span>Dispositivos</span>
+							</a>
+						</li>
+						<li class="menu-item row-item" ng-class="{selected:(menuItem===3)}">
+							<a class="btn" ng-click="navClick(3)" href="#">
+								<span>Mirroring</span>
+							</a>
+						</li>
+						<li class="menu-item row-item" ng-class="{selected:(menuItem===4)}">
+							<a class="btn" ng-click="navClick(4)" href="#">
+								<span>Recording</span>
+							</a>
+						</li>
 					</ul>
 				</div>
 				<div class="row-item right"></div>
 			</nav>
 		</header>
-		<main class="bgc-white flexi column">
-			<div class="flexi row">
-				<div class="left row-item">
-					
-				</div>
+		<main class="bgc-white flexi column" ng-controller="contentController">
+			<div class="flexi column" ng-switch on="menuIndex">
+			<div class="flexi row" ng-switch-when="3">
+				<div class="left row-item"></div>
 				<div class="middle row-item">
-					<h3>Loading.. Please wait</h3>
+					<div class="p+">
+						<div class="card">
+							<div class="p+">
+								<strong class="fs-headline display-block">Mirroring Local</strong>
+					            <span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>
+					 
+					            <div class="paragraph fs-body-1 mt+">
+					                <p>
+					                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+					                </p>
+					            </div>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="right row-item">
 					
 				</div>
 			</div>
+			<div class="flexi row" ng-switch-when="4">
+				<div class="left row-item">
+					
+				</div>
+				<div class="middle row-item">
+					<div class="p+">
+						<div class="card">
+							<div class="p+">
+								<strong class="fs-headline display-block">Janus VideoCall</strong>
+					            <span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>
+					 
+					            <div class="paragraph fs-body-1 mt+">
+					                <p>
+					                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+					                </p>
+					            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right row-item">
+					
+				</div>
+			</div>
+			<div class="flexi row" ng-switch-default>
+				<div class="left row-item">
+				</div>
+				<div class="middle row-item">
+					<div class="p+">
+						<div class="card">
+							<div class="p+">
+								<strong class="fs-headline display-block">Informacion de Dispositivos</strong>
+					            <span class="fs-subhead tc-black-2 display-block">Lorem Ipsum</span>
+					 
+					            <div class="paragraph fs-body-1 mt+">
+					                <p>
+					                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tristique orci a lacinia malesuada.
+					                </p>
+					            </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="right row-item">
+				</div>
+			</div>
+			</div>
 		</main>
-		<footer class="bgc-grey-800 flexi column">
+		<footer class="bgc-grey-800 flexi column" ng-controller="footerController">
 			<div class="flexi row">
 				<div class="left row-item"></div>
 				<div class="middle row-item">
@@ -317,9 +395,8 @@
 							<h4>Desarrollado por Emilio Añover García.</h4>
 						</div>
 						<div class="right row-item">
-							<div id="footerClock" class="flexi row center">
-								<div class="date row-item"></div>
-								<div class="time row-item"></div>
+							<div id="footerClock" class="flexi column center">
+								<ds-widget-clock show-digital digital-format="dtf.date.normal"></ds-widget-clock><ds-widget-clock show-digital digital-format="dtf.time.twentyFour"></ds-widget-clock>
 							</div>
 						</div>
 					</div>
