@@ -2,7 +2,7 @@ function Main(nw){
 	//Properties.
 	var that = this;
 	var wnd = nw.Window.get();
-	//that.wnd= view || window;
+	wnd.frameState = "maximize";
 	that.components = {};
 
 	//Public Methods
@@ -21,23 +21,11 @@ function Main(nw){
 			wnd.minimize();
 		});
 		addHandler(that.components.view.maximize, 'click', function(){
-			wnd.maximize();
-		});
-		
-		//Añadir evento a la ventana.
-		wnd.on('maximize',function(){
-			if(wnd.height !== 1200){
-				removeHandler(that.components.view.maximize,'click',wnd.maximize);
-				addHandler(that.components.view.maximize,'click',function(){
-					wnd.resizeTo(1200, 600);
-					wnd.setPosition("center");wnd.setPosition("center");
-				}); 
+			wnd[wnd.frameState]();
+			if(wnd.frameState === 'maximize'){
+				wnd.frameState = 'unmaximize';
 			}else{
-				removeHandler(that.components.view.maximize,'click',function(){
-					wnd.resizeTo(1200, 600);
-					wnd.setPosition("center");wnd.setPosition("center");
-				}); 
-				addHandler(that.components.view.maximize,'click',wnd.maximize);
+				wnd.frameState = 'maximize';
 			}
 		});
 	};
